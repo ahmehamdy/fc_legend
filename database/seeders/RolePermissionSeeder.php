@@ -15,17 +15,17 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         // permissions
-        Permission::create(['name' => 'create news']);
-        Permission::create(['name' => 'edit news']);
-        Permission::create(['name' => 'delete news']);
+        Permission::firstOrCreate(['name' => 'create news']);
+        Permission::firstOrCreate(['name' => 'edit news']);
+        Permission::firstOrCreate(['name' => 'delete news']);
 
-        Permission::create(['name' => 'manage players']);
-        Permission::create(['name' => 'manage fixtures']);
-        Permission::create(['name' => 'manage admins']);
+        Permission::firstOrCreate(['name' => 'manage players']);
+        Permission::firstOrCreate(['name' => 'manage fixtures']);
+        Permission::firstOrCreate(['name' => 'manage admins']);
 
         // roles
-        $admin = Role::create(['name' => 'admin']);
-        $journalist = Role::create(['name' => 'journalist']);
+        $admin = Role::firstOrCreate(['name' => 'admin']);
+        $journalist = Role::firstOrCreate(['name' => 'journalist']);
 
         // assign permissions
         $admin->givePermissionTo(Permission::all());

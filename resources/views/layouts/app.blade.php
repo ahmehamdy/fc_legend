@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'FC Dynamo | Official Website')</title>
     @vite('resources/css/app.css')
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     @stack('styles')
 </head>
+
 <body>
 
     <nav class="navbar">
@@ -29,9 +33,18 @@
                 <li><a href="/matches">MATCHES</a></li>
                 <li><a href="/contact">CONTACT</a></li>
                 @auth
-                    @if(auth()->user()->role == 'admin' || auth()->user()->role == 'journalist')
+                    @if (auth()->user()->role == 'admin' || auth()->user()->role == 'journalist')
                         <li><a href="/admin" style="color: var(--primary);">DASHBOARD</a></li>
                     @endif
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                            @csrf
+                            <button type="submit"
+                                style="background: none; border: none; color: #ccc; cursor: pointer;">LOGOUT</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{route('auth.login-view')}}">LOGIN</a></li>
                 @endauth
             </ul>
         </div>
@@ -83,4 +96,5 @@
     </script>
     @stack('scripts')
 </body>
+
 </html>
