@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateAdminRequest extends FormRequest
+class UpdateNewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +23,9 @@ class UpdateAdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
-            'email' => [
-                'sometimes',
-                'email',
-                Rule::unique('users', 'email')->ignore($this->route('admin')->id),
-            ],
-            'password' => 'sometimes|min:8',
-            'role' => ['sometimes', Rule::in(['admin', 'journalist'])],
+            'title' => 'sometimes|string',
+            'content' => 'sometimes|string',
+            'image' => 'sometimes|image|mimes:png,jpg,jpeg'
         ];
     }
 }

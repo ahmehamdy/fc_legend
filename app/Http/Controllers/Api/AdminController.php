@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\AdminCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
@@ -37,6 +38,8 @@ class AdminController extends Controller
         );
 
         $user->assignRole('admin');
+
+        event(new AdminCreated($user));
 
         return response()->json([
             'message' => 'Admin created succssfully',

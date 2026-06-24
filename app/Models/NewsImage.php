@@ -8,7 +8,7 @@ class NewsImage extends Model
 {
     protected $fillable = [
         'news_id',
-        'image'
+        'image_path'
     ];
 
     public function news()
