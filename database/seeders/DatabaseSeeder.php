@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(1)->create();
 
         $this->call([
+            // AdminSeeder::class,
             PlayerSeeder::class,
             NewsSeeder::class,
             FixtureSeeder::class,

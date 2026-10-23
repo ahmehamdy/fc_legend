@@ -19,4 +19,9 @@ class Player extends Model
         'weight',
         'is_legend'
     ];
+
+    public function match_events()
+    {
+        return $this->hasMany(Match_events::class);
+    }
 }

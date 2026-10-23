@@ -15,8 +15,18 @@ return new class extends Migration
             $table->id();
             $table->date('match_date');
             $table->string('opponent');
-            $table->string('result');
-            $table->enum('status', ['upcoming', 'finished']);
+            $table->integer('home_score')->default(0);
+            $table->integer('away_score')->default(0);
+            $table->enum('status', [
+                'upcoming',
+                'live',
+                'finished'
+            ]);
+            $table->enum('result', [
+                'win',
+                'loss',
+                'draw'
+            ])->nullable();
             $table->string('league');
             $table->timestamps();
         });

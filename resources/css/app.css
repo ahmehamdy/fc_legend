@@ -45,6 +45,29 @@
            padding: 0 20px;
        }
 
+       #page-loader {
+           position: fixed;
+           inset: 0;
+           z-index: 99999;
+
+           background: #0b0b0b;
+
+           display: flex;
+           align-items: center;
+           justify-content: center;
+
+           transition: opacity 0.4s ease, visibility 0.4s ease;
+       }
+
+       #page-loader.hidden {
+           opacity: 0;
+           visibility: hidden;
+       }
+
+       .loader-content {
+           text-align: center;
+       }
+
        /* ========== Navigation ========== */
        .navbar {
            background: rgba(0, 0, 0, 0.95);
@@ -52,9 +75,14 @@
            border-bottom: 1px solid var(--dark-border);
            position: fixed;
            top: 0;
+           left: 0;
            width: 100%;
            z-index: 1000;
            padding: 1rem 0;
+       }
+
+       main {
+           padding-top: 82px;
        }
 
        .navbar .container {

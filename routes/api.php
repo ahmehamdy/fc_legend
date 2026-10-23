@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FixtureController;
 use App\Http\Controllers\Api\JournalistController;
+use App\Http\Controllers\Api\Match_eventsController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PlayerController;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +42,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/{news}', [NewsController::class, 'update']);
         Route::delete('/news-images/{newsImage}', [NewsController::class, 'deleteNewsImages']);
         Route::delete('/{news}', [NewsController::class, 'deleteNews']);
+    });
+    Route::prefix('fixture')->group(function () {
+        Route::get('/', [FixtureController::class, 'index']);
+        Route::get('/{fixture}', [FixtureController::class, 'show']);
+        Route::post('/', [FixtureController::class, 'store']);
+        Route::put('/upcomingFixture/{fixture}', [FixtureController::class, 'updateUpcomingFixture']);
+        Route::put('/start/{fixture}', [FixtureController::class, 'start']);
+        Route::put('/finish/{fixture}', [FixtureController::class, 'finish']);
+    });
+    Route::prefix('matchEvent')->group(function () {
+        Route::post('/store/{fixture}',[Match_eventsController::class,'store']);
     });
 });
